@@ -1,5 +1,5 @@
 FROM scratch
 
-COPY gopath/bin/cowsay /cowsay
+COPY gopath/bin/moo /moo
 
-ENTRYPOINT ["/cowsay"]
+ENTRYPOINT ["/moo"]
