@@ -5,9 +5,9 @@ steps:
   - 'PROJECT_ROOT=moo'
   - 'CGO_ENABLED=0'
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcr.io/$PROJECT_ID/moo', '.']
+  args: ['build', '--tag=gcr.io/$PROJECT_ID/moo:${BUILD_ID}', '.']
 - name: 'gcr.io/cloud-builders/kubectl'
-  args: ['set', 'image', 'deployment/moo', 'moo=gcr.io/${PROJECT_ID}/moo:${TAG_NAME}']
+  args: ['set', 'image', 'deployment/moo', 'moo=gcr.io/${PROJECT_ID}/moo:${BUILD_ID}']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-moo'
