@@ -1,11 +1,13 @@
 steps:
 - name: 'gcr.io/cloud-builders/go'
   args: ['install', '.']
-  env: ['PROJECT_ROOT=moo']
+  env:
+  - 'PROJECT_ROOT=moo'
+  - 'CGO_ENABLED=0'
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--tag=gcr.io/$PROJECT_ID/moo', '.']
 - name: 'gcr.io/cloud-builders/kubectl'
-  args: ['run', 'moo', '--image=gcr.io/${PROJECT_ID}/moo', '--port', '8080']
+  args: ['set', 'image', 'deployment/moo', 'moo=gcr.io/${PROJECT_ID}/moo']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-moo'
