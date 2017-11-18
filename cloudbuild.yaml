@@ -4,4 +4,10 @@ steps:
   env: ['PROJECT_ROOT=moo']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--tag=gcr.io/$PROJECT_ID/moo', '.']
+steps:
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['run', 'moo', '--image=gcr.io/${PROJECT_ID}/moo', '--port', '8080']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-moo'
 images: ['gcr.io/$PROJECT_ID/moo']
