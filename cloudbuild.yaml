@@ -7,7 +7,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--tag=gcr.io/$PROJECT_ID/moo', '.']
 - name: 'gcr.io/cloud-builders/kubectl'
-  args: ['set', 'image', 'deployment/moo', 'moo=gcr.io/${PROJECT_ID}/moo:latest']
+  args: ['set', 'image', 'deployment/moo', 'moo=gcr.io/${PROJECT_ID}/moo:${TAG_NAME}']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-moo'
