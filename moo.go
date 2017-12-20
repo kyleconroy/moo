@@ -1,16 +1,11 @@
 package main
 
 import (
-	"io"
-	"log"
-	"net/http"
+	"flag"
+	"fmt"
 )
 
-func HelloServer(w http.ResponseWriter, req *http.Request) {
-	io.WriteString(w, "moo\n")
-}
-
 func main() {
-	http.HandleFunc("/hello", HelloServer)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	flag.Parse()
+	fmt.Printf("moo %s moo\n", flag.Arg(0))
 }
