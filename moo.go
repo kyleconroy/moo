@@ -14,7 +14,7 @@ func main() {
 	}
 	
 	// It's a moo time
-	newcontents := "MOO!\n\n" + string(blob)
+	newcontents := "MOO! MOO!\n\n" + string(blob)
 
 	if err := ioutil.WriteFile(flag.Arg(1), []byte(newcontents), 0644); err != nil {
 		log.Fatal(err)
